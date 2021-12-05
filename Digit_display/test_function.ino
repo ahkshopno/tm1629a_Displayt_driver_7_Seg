@@ -1,5 +1,3 @@
-#include <TM1638plus.h>
-
 #define dig_1 0b00000001
 #define dig_2 0b00000010
 #define dig_3 0b00000100
@@ -22,49 +20,7 @@
 
 
 
-// GPIO I/O pins on the Arduino connected to strobe, clock, data,
-//pick on any I/O you want.
-#define STROBE_TM 8      // strobe = GPIO connected to strobe line of module
-#define CLOCK_TM 9       // clock = GPIO connected to clock line of module
-#define DIO_TM 10        // data = GPIO connected to data line of module
-bool high_freq = false;  //default false,, If using a high freq CPU > ~100 MHZ set to true.
-
-//Constructor object (GPIO STB , GPIO CLOCK , GPIO DIO, use high freq MCU)
-TM1638plus tm(STROBE_TM, CLOCK_TM, DIO_TM, high_freq);
-
-
-// Some vars and defines for the tests.
-#define myTestDelay 50
-#define myTestDelay1 1000
-
-void setup() {
-  Serialinit();
-
-  tm.displayBegin();
-  delay(myTestDelay1);
-  tm.reset();
-
-
-  Test3();
-  Test13();
-
-  tm.reset();
-}
-
-void loop() {
-//  Test3(0b10000001);
-}
-
-
-
-
-void Serialinit() {
-  Serial.begin(115200);
-  delay(100);
-  Serial.println("--Comms UP--TM1638plus_TEST_Model1.ino--");
-}
-
-void Test3(void) {
+void Test_digit(void) {
   //TEST 3 single segment (pos, (dp)gfedcba)
   //In this case  segment g (middle dash) of digit position 7
 
@@ -213,25 +169,20 @@ void Test3(void) {
 
 
 
-void Test13(void)
+void Test_Flag(void)
 {
-  // tm.setLEDs(0xFF00); //  all LEDs on 
-  // tm.setLED(0xFF00); //  all LEDs on 
-  for(int LEDposition = 0; LEDposition < 20; LEDposition++){
+  for (int LEDposition = 0; LEDposition < 20; LEDposition++) {
     tm.setLED(LEDposition, 1);
-    delay(100);    
+    delay(50);
   }
 
-    for(int LEDposition = 0; LEDposition < 20; LEDposition++){
+  for (int LEDposition = 0; LEDposition < 20; LEDposition++) {
     tm.setLED(LEDposition, 2);
-    delay(100);    
+    delay(50);
   }
 
-    for(int LEDposition = 0; LEDposition < 20; LEDposition++){
+  for (int LEDposition = 0; LEDposition < 20; LEDposition++) {
     tm.setLED(LEDposition, 4);
-    delay(100);    
+    delay(50);
   }
-  
-  delay(3000);
-  // tm.reset();  
 }
