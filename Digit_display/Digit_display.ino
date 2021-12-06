@@ -1,4 +1,5 @@
 #include <TM1638plus.h>
+#include <TM1638plus_Model2.h>
 
 
 
@@ -8,20 +9,27 @@
 bool high_freq = false;  //default false,, If using a high freq CPU > ~100 MHZ set to true.
 
 TM1638plus tm(STROBE_TM, CLOCK_TM, DIO_TM, high_freq);
+TM1638plus_Model2 tm2(STROBE_TM, CLOCK_TM, DIO_TM, high_freq);
 
 
 #define myTestDelay 50
-#define myTestDelay1 1000
+#define myTestDelay1 500
 
 void setup() {
   Serialinit();
   tm.displayBegin();
   delay(myTestDelay1);
   tm.reset();
-  Test_digit();
-  Test_Flag();
-  tm.reset();
-  //  digit_1();
+//      Test_digit();
+//      Test_Flag();
+//      tm.reset();
+
+//
+  for (long i = 0; i < 999999999; i=i+1010101) {
+    digit_1(i);
+    delay(10);
+  }
+
 }
 void loop() {
   // put your main code here, to run repeatedly:
