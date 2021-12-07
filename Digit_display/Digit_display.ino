@@ -1,8 +1,6 @@
 #include <TM1638plus.h>
 #include <TM1638plus_Model2.h>
 
-
-
 #define STROBE_TM 8      // strobe = GPIO connected to strobe line of module
 #define CLOCK_TM 9       // clock = GPIO connected to clock line of module
 #define DIO_TM 10        // data = GPIO connected to data line of module
@@ -20,15 +18,15 @@ void setup() {
   tm.displayBegin();
   delay(myTestDelay1);
   tm.reset();
-//      Test_digit();
-//      Test_Flag();
-//      tm.reset();
+  //      Test_digit();
+  //      Test_Flag();
+  //      tm.reset();
 
-//
-  for (long i = 0; i < 999999999; i=i+1010101) {
-    digit_1(i);
-    delay(10);
-  }
+  Test_Flag_bit();
+//  for (long i = 0; i < 999999999; i = i + 1) {
+//    display_digits(i);
+//    delay(50);
+//  }
 
 }
 void loop() {
