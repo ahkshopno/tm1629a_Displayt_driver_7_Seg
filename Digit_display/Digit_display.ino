@@ -18,15 +18,15 @@ void setup() {
   tm.displayBegin();
   delay(myTestDelay1);
   tm.reset();
-  //      Test_digit();
-  //      Test_Flag();
-  //      tm.reset();
+  Test_digit();
+  Test_Flag();
+  tm.reset();
 
   Test_Flag_bit();
-//  for (long i = 0; i < 999999999; i = i + 1) {
-//    display_digits(i);
-//    delay(50);
-//  }
+  for (long i = 0; i < 999999999; i = i + 1) {
+    display_digits(i);
+    delay(50);
+  }
 
 }
 void loop() {
